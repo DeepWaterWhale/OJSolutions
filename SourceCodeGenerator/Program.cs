@@ -6,7 +6,7 @@
     internal class Program
     {
         private static string CSharpSolutionRelativePath = @"OJSolutions.sln";
-        private static string OJSolutionRelativePath = @"LeetCode\WeeklyContest\WC362\Problem2851.cs";
+        private static string OJSolutionRelativePath = @"LeetCode\TODOs\Problem2719.cs";
         private static string OutputFileRelativePath = @"SourceCodeGenerator\Merged.cs";
         private static string RefProjectRelativePath = @"Shared\Shared.csproj";
 

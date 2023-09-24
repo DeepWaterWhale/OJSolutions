@@ -1,4 +1,4 @@
-﻿namespace LeetCode.TODOs
+﻿namespace LeetCode.RandomPick
 {
     using Shared.DynamicProgramming;
 

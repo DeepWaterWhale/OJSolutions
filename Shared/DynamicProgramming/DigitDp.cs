@@ -16,9 +16,14 @@
         private readonly Func<TStatus, int> endingFunc;
         private readonly List<int> rightDigit;
 
-        public DigitDp(int right, Func<TStatus, int, TStatus> statusUpdateFunc, Func<TStatus, int> endingFunc)
+        public DigitDp(int right, Func<TStatus, int, TStatus> statusUpdateFunc, Func<TStatus, int> endingFunc) :
+            this(right.ToString(), statusUpdateFunc, endingFunc)
         {
-            this.rightDigit = right.ToString().Reverse().Select(ch => (int)(ch - '0')).ToList();
+        }
+
+        public DigitDp(string right, Func<TStatus, int, TStatus> statusUpdateFunc, Func<TStatus, int> endingFunc)
+        {
+            this.rightDigit = right.Reverse().Select(ch => (int)(ch - '0')).ToList();
             this.updateStatus = statusUpdateFunc;
             this.endingFunc = endingFunc;
         }
@@ -37,7 +42,7 @@
 
             res = 0;
             int max = 9;
-            if (pos == this.rightDigit.Count - 1 || // Now prefixStatus == DigitDpPrefixStatus.LeadingZeros
+            if (pos == this.rightDigit.Count - 1 || // Now prefixStatus == LeadingZeros
                 prefixStatus == DigitDpPrefixStatus.EqualsRight)
             {
                 max = this.rightDigit[pos];
@@ -45,15 +50,16 @@
 
             for (int i = 0; i <= max; i++)
             {
-                if (i == 0 && 
+                if (i == 0 &&
                     prefixStatus == DigitDpPrefixStatus.LeadingZeros)
                 {
                     res += this.Solve(pos - 1, DigitDpPrefixStatus.LeadingZeros, this.updateStatus(status, i));
                     continue;
                 }
 
-                if (i == this.rightDigit[pos] && 
-                    (prefixStatus == DigitDpPrefixStatus.EqualsRight || pos == this.rightDigit.Count - 1))
+                if (i == this.rightDigit[pos] &&
+                    (pos == this.rightDigit.Count - 1 || // Now prefixStatus == LeadingZeros, should change to EqualsRight
+                    prefixStatus == DigitDpPrefixStatus.EqualsRight))
                 {
                     res += this.Solve(pos - 1, DigitDpPrefixStatus.EqualsRight, this.updateStatus(status, i));
                     continue;
@@ -63,7 +69,54 @@
             }
 
             this.dp[(pos, prefixStatus, status)] = res;
-            return res;
+            return this.dp[(pos, prefixStatus, status)];
+        }
+
+        public int SolveWithMod(int pos, DigitDpPrefixStatus prefixStatus, TStatus status, int MOD)
+        {
+            if (pos == -1)
+            {
+                return this.endingFunc(status);
+            }
+
+            if (this.dp.TryGetValue((pos, prefixStatus, status), out int res))
+            {
+                return res;
+            }
+
+            res = 0;
+            int max = 9;
+            if (pos == this.rightDigit.Count - 1 || // Now prefixStatus == LeadingZeros
+                prefixStatus == DigitDpPrefixStatus.EqualsRight)
+            {
+                max = this.rightDigit[pos];
+            }
+
+            for (int i = 0; i <= max; i++)
+            {
+                if (i == 0 &&
+                    prefixStatus == DigitDpPrefixStatus.LeadingZeros)
+                {
+                    res += this.SolveWithMod(pos - 1, DigitDpPrefixStatus.LeadingZeros, this.updateStatus(status, i), MOD);
+                    res = res % MOD;
+                    continue;
+                }
+
+                if (i == this.rightDigit[pos] &&
+                    (pos == this.rightDigit.Count - 1 || // Now prefixStatus == LeadingZeros, should change to EqualsRight
+                    prefixStatus == DigitDpPrefixStatus.EqualsRight))
+                {
+                    res += this.SolveWithMod(pos - 1, DigitDpPrefixStatus.EqualsRight, this.updateStatus(status, i), MOD);
+                    res = res % MOD;
+                    continue;
+                }
+
+                res += this.SolveWithMod(pos - 1, DigitDpPrefixStatus.LessThan, this.updateStatus(status, i), MOD);
+                res = res % MOD;
+            }
+
+            this.dp[(pos, prefixStatus, status)] = res % MOD;
+            return this.dp[(pos, prefixStatus, status)];
         }
     }
 }
