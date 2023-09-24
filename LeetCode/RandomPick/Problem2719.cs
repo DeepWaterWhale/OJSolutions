@@ -1,4 +1,4 @@
-﻿namespace LeetCode.TODOs
+﻿namespace LeetCode.RandomPick
 {
     using Shared;
     using Shared.DynamicProgramming;
@@ -12,7 +12,7 @@
                 var ans = this.Count(num2, min_sum, max_sum) - this.Count(num1, min_sum, max_sum);
 
                 // Check num1 is good or not
-                var dsNum1 = num1.Select(ch => (int)(ch - '0')).Sum();
+                var dsNum1 = num1.Select(ch => ch - '0').Sum();
                 if (min_sum <= dsNum1 && dsNum1 <= max_sum) ans++;
                 if (ans < 0) ans += Constants.MOD;
 
