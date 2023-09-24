@@ -21,7 +21,8 @@
                 foreach (var refNode in refCompilationNode.ChildNodes())
                 {
                     if (refNode is ClassDeclarationSyntax ||
-                        refNode is InterfaceDeclarationSyntax)
+                        refNode is InterfaceDeclarationSyntax || 
+                        refNode is EnumDeclarationSyntax)
                     {
                         de.InsertAfter(node, refNode);
                     }
