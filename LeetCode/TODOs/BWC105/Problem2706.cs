@@ -1,4 +1,4 @@
-﻿namespace LeetCode.ByWeeklyContest.BWC105
+﻿namespace LeetCode.TODOs.BWC105
 {
     internal class Problem2706
     {

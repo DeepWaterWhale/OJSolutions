@@ -1,4 +1,4 @@
-﻿namespace LeetCode.WeeklyContest.WC346
+﻿namespace LeetCode.TODOs.WC346
 {
     internal class Problem2699
     {
@@ -25,7 +25,7 @@
                 return null;
             }
 
-            private long[, ] ConvertToAdjacentMatrix(int[][] edges, int n)
+            private long[,] ConvertToAdjacentMatrix(int[][] edges, int n)
             {
                 long[,] dist = new long[n, n];
                 for (int i = 0; i < n; ++i)

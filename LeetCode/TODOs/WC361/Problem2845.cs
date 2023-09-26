@@ -1,4 +1,4 @@
-﻿namespace LeetCode.WeeklyContest.WC361
+﻿namespace LeetCode.TODOs.WC361
 {
     internal class Problem2845
     {
@@ -33,7 +33,7 @@
                         // Count the sub-arr start contains [indexes[i] : indexes[i + len - 1]]
                         // But didn't contains indexes[i - 1] or indexes[i + len]
                         int minEndIndex = indexes[i + len - 1]; // Including
-                        int maxEndIndex = (i + len == indexes.Count ? nums.Count : indexes[i + len]); // Not including
+                        int maxEndIndex = i + len == indexes.Count ? nums.Count : indexes[i + len]; // Not including
                         long possibleEndCount = maxEndIndex - minEndIndex;
 
                         Console.WriteLine($"maxStartIndex = {maxStartIndex}:{nums[maxStartIndex]}, possibleStartCount = {possibleStartCount}");
@@ -42,7 +42,7 @@
                         len += modulo;
                     }
                 }
-                
+
                 if (k == 0)
                 {
                     long length = 0;

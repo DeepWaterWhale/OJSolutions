@@ -1,4 +1,4 @@
-﻿namespace OjProblems.LeetCode.StupidProblems
+﻿namespace LeetCode.TODOs
 {
     using System;
     using System.Collections.Generic;

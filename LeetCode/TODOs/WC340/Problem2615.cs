@@ -5,7 +5,7 @@
 //  tags:         
 // --------------------------------------------------------------------------------------------------
 
-namespace OjProblems.LeetCode.Contest.WeeklyContest340
+namespace LeetCode.TODOs.WC340
 {
     using System.Collections.Generic;
 
@@ -40,7 +40,7 @@ namespace OjProblems.LeetCode.Contest.WeeklyContest340
                     {
                         // long * int would return int causing overflow
                         long index = i;
-                        ans[kv.Value[i]] = (kv.Value[i] * index - left) + (right - kv.Value[i] * (kv.Value.Count - index));
+                        ans[kv.Value[i]] = (kv.Value[i] * index) - left + (right - (kv.Value[i] * (kv.Value.Count - index)));
                         left += kv.Value[i];
                         right -= kv.Value[i];
                     }

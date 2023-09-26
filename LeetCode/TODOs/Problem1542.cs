@@ -1,4 +1,4 @@
-﻿namespace OjProblems.LeetCode
+﻿namespace LeetCode.TODOs
 {
     using System;
     using System.Collections.Generic;
@@ -37,7 +37,7 @@
                 for (int i = 0; i < s.Length; ++i)
                 {
                     char c = s[i];
-                    int digit = (int)(c - '0');
+                    int digit = c - '0';
                     status ^= exps[digit];
 
                     if (firstOccurence[status] == this.max)
@@ -73,7 +73,7 @@
                 for (int i = 0; i < s.Length; ++i)
                 {
                     char c = s[i];
-                    int digit = (int)(c - '0');
+                    int digit = c - '0';
                     status ^= exps[digit];
 
                     if (dict.ContainsKey(status))
@@ -113,7 +113,7 @@
                 for (int i = 0; i < s.Length; ++i)
                 {
                     char c = s[i];
-                    int digit = (int)(c - '0');
+                    int digit = c - '0';
                     sb[digit] = this.FlipChar(sb[digit]);
 
                     if (dict.ContainsKey(sb.ToString()))

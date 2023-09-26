@@ -1,4 +1,4 @@
-﻿namespace OjProblems.LeetCode
+﻿namespace LeetCode.TODOs
 {
     using System.Collections.Generic;
 
@@ -53,7 +53,7 @@
                 }
 
                 // Last index is (startIndex + subArrayCount * this.subArrayLength - 1)
-                if (startIndex + subArrayCount * this.subArrayLength - 1 < this.numsCount)
+                if (startIndex + (subArrayCount * this.subArrayLength) - 1 < this.numsCount)
                 {
                     if (subArrayCount == 1)
                     {

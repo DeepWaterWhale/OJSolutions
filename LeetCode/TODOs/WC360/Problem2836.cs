@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using LeetCodeUtils.DataStructures.Tree;
-
-namespace LeetCode.WeeklyContest.WC360
+﻿namespace LeetCode.TODOs.WC360
 {
     internal class Problem2836
     {
@@ -12,6 +9,7 @@ namespace LeetCode.WeeklyContest.WC360
                 // The pass can make a directed graph
                 // Each receiver is a node in it, and either it is in a circle
                 // Or in a path starting with a receiver who no one passes to it and ends with some circle
+                return 0;
             }
 
             private class PassPath
@@ -36,7 +34,7 @@ namespace LeetCode.WeeklyContest.WC360
                     if (k < this.path.Count)
                     {
                         // The ball ends in the path, from path[0] to path[k + 1]
-                        int end = (int) k;
+                        int end = (int)k;
                         while (end < this.path.Count)
                         {
                             ans = Math.Max(ans, this.path[end].Value - this.path[start].Value + this.path[start].Receiver);
@@ -48,9 +46,9 @@ namespace LeetCode.WeeklyContest.WC360
                     // The ball ends in the circle
                     while (start < this.path.Count)
                     {
-                        ans = Math.Max(ans, 
+                        ans = Math.Max(ans,
                             this.path.Last().Value - this.path[start].Value // The value in the path
-                            + this.circle.GetMaxValue(this.circle_entry_receiver, k - this.path.Count + start));
+                            + this.circle.GetMaxValue(this.circle_entry_receiver));
                     }
 
                     return ans;
@@ -59,7 +57,7 @@ namespace LeetCode.WeeklyContest.WC360
 
             private class Circle
             {
-                private long totalValuePerCircle;
+                private readonly long totalValuePerCircle;
 
                 private readonly List<(int Receiver, long Value)> path;
 
@@ -70,17 +68,17 @@ namespace LeetCode.WeeklyContest.WC360
                 {
                     if (k % this.path.Count == 0)
                     {
-                        return (k / this.path.Count) * this.totalValuePerCircle;
+                        return k / this.path.Count * this.totalValuePerCircle;
                     }
 
                     k %= this.path.Count;
                     long ans = 0;
-                    for (int i = 0; i < path.Count; ++i)
+                    for (int i = 0; i < this.path.Count; ++i)
                     {
                         ans = Math.Max(ans, this.GetValue(k, i));
                     }
 
-                    return ans + (k / this.path.Count) * this.totalValuePerCircle; ;
+                    return ans + (k / this.path.Count * this.totalValuePerCircle);
                 }
 
                 /// Return the value when ball with k passes
@@ -94,7 +92,7 @@ namespace LeetCode.WeeklyContest.WC360
                         return this.path[end].Value - this.path[start_index].Value + this.path[start_index].Receiver;
                     }
 
-                    int last = path.Count - 1;
+                    int last = this.path.Count - 1;
                     // Value(start -> last -> 0 -> end) = Value(start -> last) + Value(0 -> end)
                     return this.GetValue(last - start_index, start_index) + this.GetValue(end, 0);
                 }

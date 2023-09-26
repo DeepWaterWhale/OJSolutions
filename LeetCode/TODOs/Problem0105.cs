@@ -1,7 +1,7 @@
-﻿namespace OjProblems.LeetCode
+﻿namespace LeetCode.TODOs
 {
     using System.Collections.Generic;
-    using LeetCodeUtils;
+    using LeetCode;
 
     internal class Problem0105
     {

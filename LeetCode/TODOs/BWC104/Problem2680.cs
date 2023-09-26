@@ -1,4 +1,4 @@
-﻿namespace LeetCode.ByWeeklyContest.BWC104
+﻿namespace LeetCode.TODOs.BWC104
 {
     internal class Problem2680
     {
@@ -82,7 +82,7 @@
                 {
                     if (bitsCount[i] > 0)
                     {
-                        ans += (One << i);
+                        ans += One << i;
                     }
                 }
 

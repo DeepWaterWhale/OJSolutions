@@ -1,4 +1,4 @@
-﻿namespace OjProblems.LeetCode
+﻿namespace LeetCode.TODOs
 {
     using System;
     internal class Problem0732

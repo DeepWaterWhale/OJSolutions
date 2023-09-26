@@ -5,7 +5,7 @@
 //  tags:         Floyd–Warshall algorithm
 // --------------------------------------------------------------------------------------------------
 
-namespace OjProblems.LeetCode.Contest.BiWeekly102
+namespace LeetCode.TODOs.BWC102
 {
     using System;
     using System.Collections.Generic;

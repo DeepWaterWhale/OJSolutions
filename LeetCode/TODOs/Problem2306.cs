@@ -1,4 +1,4 @@
-﻿namespace OjProblems.LeetCode
+﻿namespace LeetCode.TODOs
 {
     internal class Problem2306
     {
@@ -37,7 +37,7 @@
                 {
                     if (!hs.Contains(c + sub))
                     {
-                        count[(int) (name[0] - 'a'), (int) (c - 'a')]++;
+                        count[name[0] - 'a', c - 'a']++;
                     }
                 }
             }

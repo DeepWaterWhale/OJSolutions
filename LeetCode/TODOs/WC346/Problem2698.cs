@@ -1,4 +1,4 @@
-﻿namespace LeetCode.WeeklyContest.WC346
+﻿namespace LeetCode.TODOs.WC346
 {
     internal class Problem2698
     {
@@ -49,7 +49,7 @@
             {
                 // Console.WriteLine(string.Join(", ", nums));
                 int ans = 0;
-                foreach(int num in nums) 
+                foreach (int num in nums)
                 {
                     if (num <= n)
                     {

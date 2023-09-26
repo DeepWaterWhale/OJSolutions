@@ -1,7 +1,7 @@
-﻿namespace LeetCode.WeeklyContest.WC361
+﻿namespace LeetCode.TODOs.WC361
 {
-    using LeetCodeUtils.Algorithms;
-    using LeetCodeUtils.DataStructures.Tree;
+    using Shared.Algorithms;
+    using Shared.DataStructures.Tree;
 
     internal class Problem2846
     {
@@ -16,7 +16,7 @@
                 DfsAlgorithm.Traverse(
                     node: root,
                     whenVisitFromParent: (parent, node) =>
-                    { 
+                    {
                         subtreeEdgeCnt[node.Value] = new int[27];
                         for (int i = 0; i < 27; ++i)
                         {

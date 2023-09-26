@@ -1,4 +1,4 @@
-﻿namespace OjProblems.LeetCode
+﻿namespace LeetCode.TODOs
 {
     using System.Collections.Generic;
     internal class Problem0096
@@ -35,7 +35,7 @@
 
             public int NumTrees(int n)
             {
-                return Solution.numTrees[n];
+                return numTrees[n];
             }
         }
     }

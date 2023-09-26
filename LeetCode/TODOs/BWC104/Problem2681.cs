@@ -1,4 +1,4 @@
-﻿namespace LeetCode.ByWeeklyContest.BWC104
+﻿namespace LeetCode.TODOs.BWC104
 {
     internal class Problem2681
     {
@@ -30,7 +30,7 @@
                 long[] res = new long[nl.Count];
                 for (int i = 0; i < nl.Count; i++)
                 {
-                    res[i] = (nl[i] * nl[i] % MOD) * minsum[i] % MOD;
+                    res[i] = nl[i] * nl[i] % MOD * minsum[i] % MOD;
                 }
 
                 long ans = 0;

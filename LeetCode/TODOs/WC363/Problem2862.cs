@@ -1,4 +1,4 @@
-﻿namespace LeetCode.WeeklyContest.WC363
+﻿namespace LeetCode.TODOs.WC363
 {
     internal class Problem2862
     {

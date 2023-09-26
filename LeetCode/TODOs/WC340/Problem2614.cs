@@ -5,7 +5,7 @@
 //  tags:         
 // --------------------------------------------------------------------------------------------------
 
-namespace OjProblems.LeetCode.Contest.WeeklyContest340
+namespace LeetCode.TODOs.WC340
 {
     public class Problem2614
     {

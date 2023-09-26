@@ -1,7 +1,7 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace LeetCode.WeeklyContest.WC363
+﻿namespace LeetCode.TODOs.WC363
 {
+    using Shared.Algorithms;
+
     internal class Problem2861
     {
         public class Solution
@@ -13,7 +13,9 @@ namespace LeetCode.WeeklyContest.WC363
                 List<long> longCost = cost.Select(num => (long)num).ToList();
                 for (int i = 0; i < composition.Count; ++i)
                 {
-                    ans = Math.Max(ans, this.MaxNumberOfAlloys(budget, composition[i].Select(num => (long)num).ToList(), longStock, longCost));
+                    ans = Math.Max(
+                        ans,
+                        this.MaxNumberOfAlloys(budget, composition[i].Select(num => (long)num).ToList(), longStock, longCost));
                 }
 
                 return (int)ans;
@@ -21,44 +23,23 @@ namespace LeetCode.WeeklyContest.WC363
 
             private long MaxNumberOfAlloys(long budget, IList<long> composition, IList<long> stock, IList<long> cost)
             {
-                long max = 200000000; // 2 * 10^8
-                long min = 0;
-                while (min < max)
+                return BinarySearch.SearchLong(0, 200000000, cnt =>
                 {
-                    long middle = (max + min) / 2;
-                    if (this.CanMake(middle, budget, composition, stock, cost))
+                    for (int i = 0; i < composition.Count; i++)
                     {
-                        min = middle + 1;
-                    }
-                    else
-                    {
-                        max = middle - 1;
-                    }
-                }
+                        if (composition[i] * cnt > stock[i])
+                        {
+                            budget -= ((composition[i] * cnt) - stock[i]) * cost[i];
+                        }
 
-                if (this.CanMake(min, budget, composition, stock, cost))
-                {
-                    return min;
-                }
-                return min - 1;
-            }
-
-            private bool CanMake(long count, long budget, IList<long> composition, IList<long> stock, IList<long> cost)
-            {
-                for (int i = 0; i < composition.Count; i++)
-                {
-                    if (composition[i] * count > stock[i])
-                    {
-                        budget -= ((composition[i] * count - stock[i]) * cost[i]);
+                        if (budget < 0)
+                        {
+                            return false;
+                        }
                     }
 
-                    if (budget < 0)
-                    {
-                        return false;
-                    }
-                }
-
-                return budget >= 0;
+                    return budget >= 0;
+                });
             }
         }
     }

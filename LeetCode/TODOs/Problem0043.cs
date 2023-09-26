@@ -1,4 +1,4 @@
-﻿namespace OjProblems.LeetCode
+﻿namespace LeetCode.TODOs
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -37,7 +37,7 @@
 
         private int ConvertChar(char c)
         {
-            return (int)(c - '0');
+            return c - '0';
         }
     }
 }

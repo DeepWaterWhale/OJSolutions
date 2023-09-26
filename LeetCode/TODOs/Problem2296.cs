@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace OjProblems.LeetCode
+namespace LeetCode.TODOs
 {
     public class Problem2296
     {
@@ -8,7 +8,7 @@ namespace OjProblems.LeetCode
         {
             private class CharNode
             {
-                public Char Char { get; }
+                public char Char { get; }
                 public CharNode Next { get; set; }
                 public CharNode Previous { get; set; }
 
@@ -72,7 +72,7 @@ namespace OjProblems.LeetCode
                 {
                     next.Previous = this._cursor;
                 }
-                
+
                 return removed;
             }
 

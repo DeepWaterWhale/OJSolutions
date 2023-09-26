@@ -1,4 +1,4 @@
-﻿namespace LeetCode.ByWeeklyContest.BWC105
+﻿namespace LeetCode.TODOs.BWC105
 {
     internal class Problem2708
     {
@@ -11,7 +11,7 @@
             long ans = 1;
             var nc = 0;
 
-            foreach(var n in posi)
+            foreach (var n in posi)
             {
                 ans *= n;
                 nc++;

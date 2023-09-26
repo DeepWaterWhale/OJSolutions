@@ -1,4 +1,4 @@
-﻿namespace LeetCode.WeeklyContest.WC345
+﻿namespace LeetCode.TODOs.WC345
 {
     using System.Collections.Generic;
 
@@ -13,7 +13,7 @@
                 int round = 1;
                 while (res.Add(next))
                 {
-                    next = (next + round * k) % n;
+                    next = (next + (round * k)) % n;
                     round++;
                 }
 

@@ -5,7 +5,7 @@
 //  tags:         binary-search, greedy-algorithm
 // --------------------------------------------------------------------------------------------------
 
-namespace OjProblems.LeetCode.Contest.WeeklyContest340
+namespace LeetCode.TODOs.WC340
 {
     using System.Collections.Generic;
     using System.Linq;

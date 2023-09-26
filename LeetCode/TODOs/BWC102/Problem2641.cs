@@ -1,14 +1,6 @@
-﻿// --------------------------------------------------------------------------------------------------
-//  author:       big_chicken
-//  problem_link: https://leetcode.com/contest/biweekly-contest-102/problems/cousins-in-binary-tree-ii/
-//  note_link:    
-//  tags:         
-// --------------------------------------------------------------------------------------------------
-
-namespace OjProblems.LeetCode.Contest.BiWeekly102
+﻿namespace LeetCode.TODOs.BWC102
 {
     using System.Collections.Generic;
-    using LeetCodeUtils;
 
     internal class Problem2641
     {

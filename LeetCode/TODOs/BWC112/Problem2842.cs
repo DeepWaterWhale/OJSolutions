@@ -1,7 +1,7 @@
-﻿namespace LeetCode.ByWeeklyContest.BWC112
+﻿namespace LeetCode.TODOs.BWC112
 {
-    using LeetCodeUtils;
-    using LeetCodeUtils.Utils;
+    using Shared;
+    using Shared.Utils;
 
     internal class Problem2842
     {
@@ -39,7 +39,7 @@
                         }
                     }
                 }
-                
+
                 long ans = MathUtils.Combination(ct, cr);
                 ans %= Constants.MOD;
 

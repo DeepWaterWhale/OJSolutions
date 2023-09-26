@@ -1,4 +1,4 @@
-﻿namespace LeetCode.WeeklyContest.WC351
+﻿namespace LeetCode.TODOs.WC351
 {
     internal class Problem2751
     {
@@ -30,7 +30,7 @@
                     robots.Add(new Robot(i + 1, positions[i], healths[i], directions[i]));
                 }
 
-                robots.Sort((a, b) => 
+                robots.Sort((a, b) =>
                 {
                     return a.Position - b.Position;
                 });

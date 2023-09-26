@@ -1,7 +1,7 @@
-﻿namespace LeetCode.WeeklyContest.WC362
+﻿namespace LeetCode.TODOs.WC362
 {
-    using LeetCodeUtils;
-    using LeetCodeUtils.Algorithms;
+    using Shared;
+    using Shared.Algorithms;
 
     internal class Problem2851
     {
@@ -46,7 +46,7 @@
                     }
                 }
 
-                return (int) (ans % Constants.MOD);
+                return (int)(ans % Constants.MOD);
             }
         }
     }

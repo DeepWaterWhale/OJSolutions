@@ -1,4 +1,4 @@
-﻿namespace LeetCode.ByWeeklyContest.BWC104
+﻿namespace LeetCode.TODOs.BWC104
 {
     internal class Problem2679
     {
@@ -17,7 +17,7 @@
                 for (int i = 0; i < lists[0].Count; ++i)
                 {
                     int tmp = lists[0][i];
-                    for (int j = 0;j < lists.Length; ++j)
+                    for (int j = 0; j < lists.Length; ++j)
                     {
                         tmp = Math.Max(tmp, lists[j][i]);
                     }
