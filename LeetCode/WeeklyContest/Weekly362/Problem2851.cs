@@ -1,4 +1,4 @@
-﻿namespace LeetCode.WeeklyContest.WC362
+﻿namespace LeetCode.WeeklyContest.Weekly362
 {
     using Shared;
     using Shared.Algorithms;
