@@ -2,6 +2,7 @@
 {
     using Shared.DataStructures.SegmentTree;
     using Shared.DataStructures.Tree;
+    using Shared.DataStructures.Tree.Extensions;
 
     /// <summary>
     /// Lowest Common Ancestor algorithm
@@ -32,7 +33,7 @@
         {
             this.depth[root.Value] = 0;
 
-            DfsAlgorithm.Traverse(
+            TreeDfsExtension.DfsTraverse(
                 root: root,
                 whenVisitFromParent: (parent, node) =>
                 {

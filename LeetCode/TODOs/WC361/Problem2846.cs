@@ -2,6 +2,7 @@
 {
     using Shared.Algorithms;
     using Shared.DataStructures.Tree;
+    using Shared.DataStructures.Tree.Extensions;
 
     internal class Problem2846
     {
@@ -9,11 +10,11 @@
         {
             public int[] MinOperationsQueries(int n, int[][] edges, int[][] queries)
             {
-                var root = TreeFactory.MakeWeightedTree(n, edges);
+                var root = TreeFactory.MakeWeightedTree(n, edges, 0);
                 var lca = new LcaAlgorithm(root);
 
                 Dictionary<int, int[]> subtreeEdgeCnt = new Dictionary<int, int[]>();
-                DfsAlgorithm.Traverse(
+                TreeDfsExtension.DfsTraverse(
                     root: root,
                     whenVisitFromParent: (parent, node) =>
                     {

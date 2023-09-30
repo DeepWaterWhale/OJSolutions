@@ -1,17 +1,17 @@
-﻿namespace Shared.Algorithms
+﻿namespace Shared.DataStructures.Tree.Extensions
 {
     using Shared.DataStructures.Tree;
 
-    public class DfsAlgorithm
+    public static class TreeDfsExtension
     {
         /// <summary>
         /// DFS Traverse
         /// </summary>
         /// <param name="root">Root node</param>
-        /// <param name="whenVisitFromParent">func(parent, now)</param>
-        /// <param name="whenVisitFromChild">func(now, child)</param>
-        public static void Traverse(
-            ITreeNode root,
+        /// <param name="whenVisitFromParent">action(parent, now)</param>
+        /// <param name="whenVisitFromChild">action(now, child)</param>
+        public static void DfsTraverse(
+            this ITreeNode root,
             Action<ITreeNode, ITreeNode> whenVisitFromParent,
             Action<ITreeNode, ITreeNode> whenVisitFromChild)
         {

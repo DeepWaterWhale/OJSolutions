@@ -1,7 +1,7 @@
 ﻿namespace LeetCode.WeeklyContest.Weekly364
 {
-    using Shared.Algorithms;
     using Shared.DataStructures.Tree;
+    using Shared.DataStructures.Tree.Extensions;
     using Shared.Utils;
 
     internal class Problem2867
@@ -13,7 +13,7 @@
                 var primes = MathUtils.GetAllPrimes(n + 1);
                 var root = TreeFactory.MakeSimpleTree(n, edges, n);
                 Dictionary<int, long> subtreeNonPrimePath = new Dictionary<int, long>();
-                DfsAlgorithm.Traverse(
+                TreeDfsExtension.DfsTraverse(
                     root,
                     whenVisitFromParent: (parent, now) =>
                     {
@@ -36,7 +36,7 @@
 
                 Dictionary<int, long> parentNonPrimePath = new Dictionary<int, long>();
                 long ans = 0;
-                DfsAlgorithm.Traverse(
+                TreeDfsExtension.DfsTraverse(
                     root,
                     whenVisitFromParent: (parent, now) =>
                     {
