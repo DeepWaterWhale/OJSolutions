@@ -13,8 +13,7 @@
                 var primes = MathUtils.GetAllPrimes(n + 1);
                 var root = TreeFactory.MakeSimpleTree(n, edges, n);
                 Dictionary<int, long> subtreeNonPrimePath = new Dictionary<int, long>();
-                TreeDfsExtension.DfsTraverse(
-                    root,
+                root.DfsTraverse(
                     whenVisitFromParent: (parent, now) =>
                     {
                         if (primes.Contains(now.Value))
@@ -36,8 +35,7 @@
 
                 Dictionary<int, long> parentNonPrimePath = new Dictionary<int, long>();
                 long ans = 0;
-                TreeDfsExtension.DfsTraverse(
-                    root,
+                root.DfsTraverse(
                     whenVisitFromParent: (parent, now) =>
                     {
                         if (parent != null)

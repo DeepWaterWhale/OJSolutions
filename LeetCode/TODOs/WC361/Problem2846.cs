@@ -14,8 +14,7 @@
                 var lca = new LcaAlgorithm(root);
 
                 Dictionary<int, int[]> subtreeEdgeCnt = new Dictionary<int, int[]>();
-                TreeDfsExtension.DfsTraverse(
-                    root: root,
+                root.DfsTraverse(
                     whenVisitFromParent: (parent, node) =>
                     {
                         subtreeEdgeCnt[node.Value] = new int[27];

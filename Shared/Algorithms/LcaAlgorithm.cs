@@ -33,8 +33,7 @@
         {
             this.depth[root.Value] = 0;
 
-            TreeDfsExtension.DfsTraverse(
-                root: root,
+            root.DfsTraverse(
                 whenVisitFromParent: (parent, node) =>
                 {
                     this.first[node.Value] = this.euler.Count;
