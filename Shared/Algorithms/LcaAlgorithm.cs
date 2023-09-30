@@ -33,7 +33,7 @@
             this.depth[root.Value] = 0;
 
             DfsAlgorithm.Traverse(
-                node: root,
+                root: root,
                 whenVisitFromParent: (parent, node) =>
                 {
                     this.first[node.Value] = this.euler.Count;

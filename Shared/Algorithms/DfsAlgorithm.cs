@@ -4,12 +4,18 @@
 
     public class DfsAlgorithm
     {
+        /// <summary>
+        /// DFS Traverse
+        /// </summary>
+        /// <param name="root">Root node</param>
+        /// <param name="whenVisitFromParent">func(parent, now)</param>
+        /// <param name="whenVisitFromChild">func(now, child)</param>
         public static void Traverse(
-            ITreeNode node,
-            Action<ITreeNode, ITreeNode> whenVisitFromParent = null,
-            Action<ITreeNode, ITreeNode> whenVisitFromChild = null)
+            ITreeNode root,
+            Action<ITreeNode, ITreeNode> whenVisitFromParent,
+            Action<ITreeNode, ITreeNode> whenVisitFromChild)
         {
-            Traverse(null, node, whenVisitFromParent, whenVisitFromChild);
+            Traverse(null, root, whenVisitFromParent, whenVisitFromChild);
         }
 
         private static void Traverse(

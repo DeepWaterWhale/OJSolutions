@@ -14,7 +14,7 @@
 
                 Dictionary<int, int[]> subtreeEdgeCnt = new Dictionary<int, int[]>();
                 DfsAlgorithm.Traverse(
-                    node: root,
+                    root: root,
                     whenVisitFromParent: (parent, node) =>
                     {
                         subtreeEdgeCnt[node.Value] = new int[27];

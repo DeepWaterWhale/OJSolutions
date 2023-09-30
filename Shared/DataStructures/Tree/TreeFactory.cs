@@ -2,9 +2,11 @@
 {
     public class TreeFactory
     {
-        public static SimpleTreeNode MakeSimpleTree(int nodeCnt, int[][] weightedEdges)
+        public static SimpleTreeNode MakeSimpleTree(int nodeCnt, int[][] weightedEdges, int root)
         {
             Dictionary<int, List<int>> dict = new Dictionary<int, List<int>>();
+            var rootNode = new SimpleTreeNode(root);
+
             foreach (var edge in weightedEdges)
             {
                 if (!dict.ContainsKey(edge[0]))
@@ -21,33 +23,31 @@
                 dict[edge[1]].Add(edge[0]);
             }
 
-            bool[] visited = new bool[nodeCnt];
-            SimpleTreeNode[] nodes = new SimpleTreeNode[nodeCnt];
-            for (int i = 0; i < nodeCnt; i++)
-            {
-                visited[i] = false;
-                nodes[i] = new SimpleTreeNode(i);
-            }
+            HashSet<int> visited = new HashSet<int>();
+            Queue<SimpleTreeNode> queue = new Queue<SimpleTreeNode>();
 
-            Queue<int> queue = new Queue<int>();
-            queue.Enqueue(0);
+            queue.Enqueue(rootNode);
 
             while (queue.Count > 0)
             {
-                var parent = nodes[queue.Dequeue()];
-                visited[parent.Value] = true;
+                var now = queue.Dequeue();
+                visited.Add(now.Value);
 
-                foreach (int child in dict[parent.Value])
+                if (dict.TryGetValue(now.Value, out List<int> children))
                 {
-                    if (!visited[child])
+                    foreach (int child in children)
                     {
-                        parent.AddChild(nodes[child]);
-                        queue.Enqueue(child);
+                        if (!visited.Contains(child))
+                        {
+                            var childNode = new SimpleTreeNode(child);
+                            now.AddChild(childNode);
+                            queue.Enqueue(childNode);
+                        }
                     }
                 }
             }
 
-            return nodes[0];
+            return rootNode;
         }
 
         public static WeightedTreeNode MakeWeightedTree(int nodeCnt, int[][] weightedEdges)

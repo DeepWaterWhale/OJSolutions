@@ -61,5 +61,24 @@
 
             return ans;
         }
+
+        public static HashSet<int> GetAllPrimes(int max)
+        {
+            HashSet<int> result = new HashSet<int>();
+            var list = ArrayUtils.MakeArray(max + 1, false);
+            for (int i = 2; i <= max; ++i)
+            {
+                if (!list[i])
+                {
+                    result.Add(i);
+                    for (int k = i; k <= max; k += i)
+                    {
+                        list[k] = true;
+                    }
+                }
+            }
+
+            return result;
+        }
     }
 }
