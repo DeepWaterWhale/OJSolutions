@@ -4,7 +4,7 @@
     {
         protected List<ITreeNode> Children { get; set; }
 
-        public int Value { get; private set; }
+        public int Value { get; set; }
 
         public SimpleTreeNode(int val)
         {

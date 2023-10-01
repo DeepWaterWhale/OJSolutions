@@ -7,20 +7,26 @@
     {
         public static SimpleTreeNode MakeSimpleTree(int nodeCnt, int[][] edges, int root)
         {
+            return MakeSimpleTree(nodeCnt, edges, root, out _);
+        }
+
+        public static SimpleTreeNode MakeSimpleTree(int nodeCnt, int[][] edges, int root, out Dictionary<int, SimpleTreeNode> nodes)
+        {
             var adjLists = new AdjacentLists(edges);
-            Dictionary<int, SimpleTreeNode> nodes = new Dictionary<int, SimpleTreeNode>();
+            Dictionary<int, SimpleTreeNode> tmp = new Dictionary<int, SimpleTreeNode>();
             adjLists.DfsTraverse(
                 start: root,
                 whenFirstVisit: (previous, now) =>
                 {
-                    nodes[now] = new SimpleTreeNode(now);
+                    tmp[now] = new SimpleTreeNode(now);
                 },
                 whenBackFromNext: (now, next) =>
                 {
-                    nodes[now].AddChild(nodes[next]);
+                    tmp[now].AddChild(tmp[next]);
                 });
 
-            return nodes[root];
+            nodes = tmp;
+            return tmp[root];
         }
 
         public static WeightedTreeNode MakeWeightedTree(int nodeCnt, int[][] weightedEdges, int root)

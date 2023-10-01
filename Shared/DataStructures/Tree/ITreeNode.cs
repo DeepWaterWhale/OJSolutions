@@ -2,7 +2,7 @@
 {
     public interface ITreeNode
     {
-        int Value { get; }
+        int Value { get; set; }
 
         IEnumerable<ITreeNode> GetChildren();
     }
