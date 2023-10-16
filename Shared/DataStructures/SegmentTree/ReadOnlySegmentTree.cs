@@ -7,18 +7,7 @@
         private readonly IList<TElement> elements;
         private readonly Func<TElement, TQueryResult> calFunc;
         private readonly Func<TQueryResult, TQueryResult, TQueryResult> mergeFunc;
-
-        /// <summary>
-        /// segments[0] is not used so that we can easily get its children
-        /// 
-        /// Assume segments[i] = query(l, r) is the QueryResult for the elements[l - 1: r - 1]
-        /// --> segments[i * 2] = query(l, (l + r) / 2)
-        /// --> segments[i * 2 + 1] = query((l + r) / 2 + 1, r)
-        /// are the children of segments[i]
-        /// 
-        /// query(i, i) = calFunc(elements[i - 1]) is the leaf of segment tree.
-        /// </summary>
-        private readonly TQueryResult[] segments;
+        private readonly Interval root;
 
         public ReadOnlySegmentTree(
             IList<TElement> elements,
@@ -28,55 +17,80 @@
             this.elements = elements;
             this.calFunc = calFunc;
             this.mergeFunc = mergeFunc;
-            this.segments = new TQueryResult[(elements.Count * 2) + 1];
 
-            // Root node is 1 for segment tree
-            this.BuildSegmentTree(1, 1, elements.Count);
+            this.root = this.BuildSegmentTree(0, elements.Count - 1);
         }
 
+        /// <summary>
+        /// Range query on the original elements[left : right] (both including)
+        /// </summary>
         public TQueryResult Query(int left, int right)
         {
-            return this.Query(1, 1, this.elements.Count, left + 1, right + 1);
+            return this.Query(this.root, left, right);
         }
 
-        private TQueryResult Query(int sgNodeIndex, int sgNodeLeft, int sgNodeRight, int left, int right)
+        private TQueryResult Query(Interval now, int left, int right)
         {
-            if (left <= sgNodeLeft && sgNodeRight <= right)
+            if (left <= now.Left && now.Right <= right)
             {
-                return this.segments[sgNodeIndex];
+                return now.Result;
             }
 
-            int middle = (sgNodeLeft + sgNodeRight) / 2;
-
+            int middle = (now.Left + now.Right) / 2;
             if (middle >= right)
             {
                 // Query left child
-                return this.Query(sgNodeIndex * 2, sgNodeLeft, middle, left, right);
+                return this.Query(now.LeftChild, left, right);
             }
             else if (middle < left)
             {
                 // Query right child
-                return this.Query((sgNodeIndex * 2) + 1, middle + 1, sgNodeRight, left, right);
+                return this.Query(now.RightChild, left, right);
             }
             else
             {
                 return this.mergeFunc(
-                    this.Query(sgNodeIndex * 2, sgNodeLeft, middle, left, middle),
-                    this.Query((sgNodeIndex * 2) + 1, middle + 1, sgNodeRight, middle + 1, right));
+                    this.Query(now.LeftChild, left, right),
+                    this.Query(now.RightChild, left, right));
             }
         }
 
-        private void BuildSegmentTree(int sgNodeIndex, int left, int right)
+        private Interval BuildSegmentTree(int left, int right)
         {
             if (left == right)
             {
-                this.segments[sgNodeIndex] = this.calFunc(this.elements[left - 1]);
-                return;
+                return new Interval(this.calFunc(this.elements[left]), left, right);
             }
 
-            this.BuildSegmentTree(sgNodeIndex * 2, left, (left + right) / 2);
-            this.BuildSegmentTree((sgNodeIndex * 2) + 1, ((left + right) / 2) + 1, right);
-            this.segments[sgNodeIndex] = this.mergeFunc(this.segments[sgNodeIndex * 2], this.segments[(sgNodeIndex * 2) + 1]);
+            int middle = (left + right) / 2;
+            var lc = this.BuildSegmentTree(left, middle);
+            var rc = this.BuildSegmentTree(middle + 1, right);
+            return new Interval(this.mergeFunc(lc.Result, rc.Result), left, right, lc, rc);
+        }
+
+        private class Interval
+        {
+            public int Left { get; set; }
+            public Interval LeftChild { get; set; }
+
+            public int Right { get; set; }
+            public Interval RightChild { get; set; }
+
+            public TQueryResult Result { get; set; }
+
+            public Interval(
+                TQueryResult result,
+                int left,
+                int right,
+                Interval leftChlid = null,
+                Interval rightChild = null)
+            {
+                this.Result = result;
+                this.Left = left;
+                this.Right = right;
+                this.LeftChild = leftChlid;
+                this.RightChild = rightChild;
+            }
         }
     }
 }
