@@ -1,4 +1,4 @@
-﻿namespace LeetCode.ByweeklyContest.BWC111
+﻿namespace LeetCode.ByweeklyContest.Biweekly111
 {
     internal class Problem2826
     {

@@ -1,4 +1,4 @@
-﻿namespace LeetCode.ByweeklyContest.BWC111
+﻿namespace LeetCode.ByweeklyContest.Biweekly111
 {
     internal class Problem2827
     {
@@ -79,8 +79,8 @@
                     {
                         var nextStatus = new Status();
                         nextStatus.NumLength = status.NumLength;
-                        nextStatus.EvenCount = status.EvenCount + ((i + 1) % 2);
-                        nextStatus.Remainder = (status.Remainder + (i * ((int)Math.Pow(10, pos) % this.Mod))) % this.Mod;
+                        nextStatus.EvenCount = status.EvenCount + (i + 1) % 2;
+                        nextStatus.Remainder = (status.Remainder + i * ((int)Math.Pow(10, pos) % this.Mod)) % this.Mod;
 
                         if (i == 0 &&
                             prefixStatus == DigitDpPrefixStatus.LeadingZeros)
