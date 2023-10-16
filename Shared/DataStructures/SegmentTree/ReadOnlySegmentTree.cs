@@ -7,7 +7,7 @@
         private readonly IList<TElement> elements;
         private readonly Func<TElement, TQueryResult> calFunc;
         private readonly Func<TQueryResult, TQueryResult, TQueryResult> mergeFunc;
-        private readonly Interval root;
+        private readonly Node root;
 
         public ReadOnlySegmentTree(
             IList<TElement> elements,
@@ -29,7 +29,7 @@
             return this.Query(this.root, left, right);
         }
 
-        private TQueryResult Query(Interval now, int left, int right)
+        private TQueryResult Query(Node now, int left, int right)
         {
             if (left <= now.Left && now.Right <= right)
             {
@@ -55,35 +55,35 @@
             }
         }
 
-        private Interval BuildSegmentTree(int left, int right)
+        private Node BuildSegmentTree(int left, int right)
         {
             if (left == right)
             {
-                return new Interval(this.calFunc(this.elements[left]), left, right);
+                return new Node(this.calFunc(this.elements[left]), left, right);
             }
 
             int middle = (left + right) / 2;
             var lc = this.BuildSegmentTree(left, middle);
             var rc = this.BuildSegmentTree(middle + 1, right);
-            return new Interval(this.mergeFunc(lc.Result, rc.Result), left, right, lc, rc);
+            return new Node(this.mergeFunc(lc.Result, rc.Result), left, right, lc, rc);
         }
 
-        private class Interval
+        private class Node
         {
             public int Left { get; set; }
-            public Interval LeftChild { get; set; }
+            public Node LeftChild { get; set; }
 
             public int Right { get; set; }
-            public Interval RightChild { get; set; }
+            public Node RightChild { get; set; }
 
             public TQueryResult Result { get; set; }
 
-            public Interval(
+            public Node(
                 TQueryResult result,
                 int left,
                 int right,
-                Interval leftChlid = null,
-                Interval rightChild = null)
+                Node leftChlid = null,
+                Node rightChild = null)
             {
                 this.Result = result;
                 this.Left = left;
