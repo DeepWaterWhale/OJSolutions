@@ -1,4 +1,4 @@
-﻿namespace LeetCode.TODOs.WC362
+﻿namespace LeetCode.WeeklyContest.Weekly362
 {
     internal class Problem2850
     {
@@ -28,7 +28,7 @@
                                     {
                                         grid[ni][nj]--;
                                         grid[i][j]++;
-                                        ans = Math.Min(ans, d + this.MinimumMoves(grid));
+                                        ans = Math.Min(ans, d + MinimumMoves(grid));
                                         grid[i][j]--;
                                         grid[ni][nj]++;
                                     }
