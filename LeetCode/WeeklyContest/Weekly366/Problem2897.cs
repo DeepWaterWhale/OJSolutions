@@ -1,4 +1,4 @@
-﻿namespace LeetCode.TODOs.Weekly366
+﻿namespace LeetCode.WeeklyContest.Weekly366
 {
     using Shared;
     using Shared.Utils;
@@ -14,7 +14,7 @@
                 {
                     for (int i = 0; i < 32; ++i)
                     {
-                        if ((num & (1 << i)) != 0)
+                        if ((num & 1 << i) != 0)
                         {
                             cnts[i]++;
                         }
@@ -39,7 +39,7 @@
                         break;
                     }
 
-                    ans = (ans + (num * num % Constants.MOD)) % Constants.MOD;
+                    ans = (ans + num * num % Constants.MOD) % Constants.MOD;
                 }
 
                 return (int)ans;

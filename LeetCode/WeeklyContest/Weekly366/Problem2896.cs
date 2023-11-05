@@ -1,4 +1,4 @@
-﻿namespace LeetCode.TODOs.Weekly366
+﻿namespace LeetCode.WeeklyContest.Weekly366
 {
     using Shared.Utils;
 
@@ -26,7 +26,7 @@
                     dp[length - 1, 3] = 250000;
                 }
 
-                int ans = this.Solve(s1, s2, x, dp, 0, 0);
+                int ans = Solve(s1, s2, x, dp, 0, 0);
                 if (ans >= 250000)
                 {
                     return -1;
@@ -51,11 +51,11 @@
                 }
 
                 int ans = 250000;
-                if ((s1[index] == s2[index]) == (status < 2))
+                if (s1[index] == s2[index] == status < 2)
                 {
                     // Current s1[index] == s2[index], can not 
                     // Case 1: Do nothing:
-                    ans = Math.Min(ans, this.Solve(s1, s2, x, dp, index + 1, status % 2));
+                    ans = Math.Min(ans, Solve(s1, s2, x, dp, index + 1, status % 2));
                 }
                 else
                 {
@@ -63,16 +63,16 @@
                     if (status % 2 == 0)
                     {
                         // No unpaired flip any
-                        ans = Math.Min(ans, this.Solve(s1, s2, x, dp, index + 1, 1) + x);
+                        ans = Math.Min(ans, Solve(s1, s2, x, dp, index + 1, 1) + x);
                     }
                     else
                     {
                         // Has unpaired flip any
-                        ans = Math.Min(ans, this.Solve(s1, s2, x, dp, index + 1, 0));
+                        ans = Math.Min(ans, Solve(s1, s2, x, dp, index + 1, 0));
                     }
 
                     // Case 3: flip current with next
-                    ans = Math.Min(ans, this.Solve(s1, s2, x, dp, index + 1, 2 + status % 2) + 1);
+                    ans = Math.Min(ans, Solve(s1, s2, x, dp, index + 1, 2 + status % 2) + 1);
                 }
 
                 dp[index, status] = ans;
